@@ -27,7 +27,7 @@ def generate_answer(input_question):
         for sample_token_ids in generated_token_ids
     ]
     answer = re.sub(
-        "@@ПЕРВЫЙ@@.*?@@ВТОРОЙ@@", "",
-        context_with_response[0], flags=re.DOTALL
+        "@@ПЕРВЫЙ@@.*"
+        + "?@@ВТОРОЙ@@", "", context_with_response[0], flags=re.DOTALL
     )
     return answer.replace("@@ПЕРВЫЙ@@", "").replace("@@ВТОРОЙ@@", "")
