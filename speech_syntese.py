@@ -26,9 +26,13 @@ def generate_answer(input_question):
         tokenizer.decode(sample_token_ids)
         for sample_token_ids in generated_token_ids
     ]
+
+    return clean_answer(context_with_response[0])
+
+def clean_answer(dirty_answer):
     answer = re.sub(
         "@@ПЕРВЫЙ@@.*?@@ВТОРОЙ@@", "",
-        context_with_response[0],
+        dirty_answer,
         flags=re.DOTALL
     )
     return answer.replace("@@ПЕРВЫЙ@@", "").replace("@@ВТОРОЙ@@", "")
